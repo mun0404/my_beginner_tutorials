@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # ROS 2 Beginner Tutorials - ENPM700
 ### Author : **Mohammed Munawwar**
 This repository is a simple publisher-subscriber package developed for ROS 2 beginner tutorials.
@@ -68,5 +70,3 @@ ros2 launch beginner_tutorials publisher_subscriber_services.launch.py freq:=0.5
 # To view rqt_console.
 ros2 run rqt_console rqt_console
 ```
-
-![example output](./results/Screenshot from 2024-11-08 22-15-48.png) 
