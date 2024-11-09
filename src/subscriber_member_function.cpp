@@ -10,13 +10,24 @@
  */
 #include "../include/beginner_tutorials/subscriber_member_function.hpp"
 
-void MinimalSubscriber::topic_callback(const std_msgs::msg::String & msg)const {
+/**
+ * @brief Callback function to process received messages on the topic.
+ *
+ */
+void BasicSubscriber::topic_callback(const std_msgs::msg::String & msg) const {
   RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
 }
 
+/**
+ * @brief Main function that initializes the ROS 2 subscriber node.
+ *
+ * @param argc Argument count
+ * @param argv Argument vector
+ * @return int Program exit status
+ */
 int main(int argc, char * argv[]) {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MinimalSubscriber>());
+  rclcpp::spin(std::make_shared<BasicSubscriber>());
   rclcpp::shutdown();
   return 0;
 }
