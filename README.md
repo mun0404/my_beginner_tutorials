@@ -54,28 +54,20 @@ clang-tidy -extra-arg=-std=c++17 src/*.cpp
 echo $? > results/clangtidy_output.txt
 ```
 ### 2: Services, Logging, and Launch files
- - Service call to modify published message.
+ - 
    
    ```bash
-   ros2 service call /modify_string beginner_tutorials/srv/NewMsg "{new_msg: Modified base string}"
-   ```
+   # Service call to modify published message.
+   ros2 service call /change_string beginner_tutorials/srv/NewStr "{new_message: changed message}"
 
- - using launch file (with default publisher frequency, 2.0)
+   # Using launch file.
+   ros2 launch beginner_tutorials publisher_subscriber_services.launch.py
 
-   ```bash
-   ros2 launch beginner_tutorials assignment2.launch.py
-   ```
+   # Using launch file to change the publisher frequncy from the default frequency of 2.0.
+   ros2 launch beginner_tutorials publisher_subscriber_services.launch.py freq:=0.5
 
- - using launch file (with argument to modify publisher frequency)
-
-   ```bash
-   ros2 launch beginner_tutorials assignment2.launch.py freq:=1.0
-   ```
-
- - to view logger levels on rqt_console.
-
-   ```bash
+   # To view rqt_console.
    ros2 run rqt_console rqt_console
    ```
 
-   ![example output](./results/screenshot_rqt_console.png) 
+   ![example output](./results/Screenshot from 2024-11-08 22-15-48.png) 
