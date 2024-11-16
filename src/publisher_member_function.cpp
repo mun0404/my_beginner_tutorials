@@ -48,13 +48,13 @@ void BasicPublisher::timer_callback() {
   tfs.child_frame_id = "talk";    // Child frame
 
   // Set non-zero translation and rotation
-  tfs.transform.translation.x = 1.0;   
-  tfs.transform.translation.y = 1.0;  
-  tfs.transform.translation.z = 1.0;  
-  tfs.transform.rotation.x = 0.1;      
-  tfs.transform.rotation.y = 0.1;      
-  tfs.transform.rotation.z = 0.1;      
-  tfs.transform.rotation.w = 0.1;   
+  tfs.transform.translation.x = 1.0;
+  tfs.transform.translation.y = 1.0;
+  tfs.transform.translation.z = 1.0;
+  tfs.transform.rotation.x = 0.1;
+  tfs.transform.rotation.y = 0.1;
+  tfs.transform.rotation.z = 0.1;
+  tfs.transform.rotation.w = 0.1;
 
   // Broadcast the transform
   tf_broadcaster.sendTransform(tfs);

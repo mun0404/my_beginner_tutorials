@@ -72,7 +72,8 @@ class BasicPublisher : public rclcpp::Node {
       publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
 
       pub_timer_ = this->create_wall_timer(
-          std::chrono::milliseconds(500), std::bind(&BasicPublisher::timer_callback, this));
+        std::chrono::milliseconds(500),
+        std::bind(&BasicPublisher::timer_callback, this));
 
       service_ = this->create_service<beginner_tutorials::srv::NewStr>(
         "change_string", [this](
