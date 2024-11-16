@@ -54,8 +54,11 @@ clang-tidy -extra-arg=-std=c++17 src/*.cpp
 
 # To save the results of clang tidy
 echo $? > results/clangtidy_output.txt
+
+# To directly format the code according to the google style C++
+clang-tidy -extra-arg=-std=c++17 src/*.cpp
 ```
-### 2: Services, Logging, and Launch files
+## Services and Launch files
    
 ```bash
 # Service call to modify published message.
@@ -69,4 +72,49 @@ ros2 launch beginner_tutorials publisher_subscriber_services.launch.py freq:=0.5
 
 # To view rqt_console.
 ros2 run rqt_console rqt_console
+```
+
+## TF Frames
+
+```bash
+# Run the publisher in terminal
+ros2 run beginner_tutorials talker
+
+# Viewing the TF tree
+ros2 run tf2_ros tf2_echo world talk
+
+# In a new terminal 
+ros2 topic echo /tf_static
+
+# In another new terminal
+ros2 run tf2_tools view_frames
+```
+## ROS2 Bags
+```bash
+# Run the launch file
+ros2 launch beginner_tutorials publisher_subscriber_services.launch.py record_bag:=True
+
+# Inspect the ros2 bag
+ros2 bag info talkerbag
+
+# Play back the ros2 bag
+ros2 bag play talkerbag
+```
+
+## Catch2 test
+```bash
+# cd into ros2_integration test folder
+cd ros2_ws/src/ros2_integration_test/
+
+# In your ros workspace
+colcon build --packages-select integration_test
+
+# Run the launch file to run the test
+ros2 launch integration_test integration_test.launch.yaml
+
+# Run the test
+colcon test --packages-select integration_test
+
+# Save the results of the test
+cat log/latest_test/integration_test/stdout_stderr.log > src/beginner_tutorials/results/catch2_tests_output.txt 
 ```

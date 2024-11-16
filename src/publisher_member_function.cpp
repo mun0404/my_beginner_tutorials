@@ -3,10 +3,29 @@
  * @author Mohammed Munawwar (mmunawwa@umd.edu)
  * @brief C++ program for simple ROS 2 publisher member function
  * @version 0.1
- * @date 2024-11-06
+ * @date 2024-11-15
  * 
  * @copyright Copyright (c) 2024
  * 
+ * @license MIT License
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 #include "../include/beginner_tutorials/publisher_member_function.hpp"
 
@@ -20,6 +39,25 @@ void BasicPublisher::timer_callback() {
   RCLCPP_INFO_STREAM(rclcpp::get_logger("basic_publisher"),
                      "Publishing: " << message.data.c_str());
   publisher_->publish(message);
+
+  static tf2_ros::TransformBroadcaster tf_broadcaster(this);
+  geometry_msgs::msg::TransformStamped tfs;
+
+  tfs.header.stamp = this->now();
+  tfs.header.frame_id = "world";  // Parent frame
+  tfs.child_frame_id = "talk";    // Child frame
+
+  // Set non-zero translation and rotation
+  tfs.transform.translation.x = 1.0;
+  tfs.transform.translation.y = 1.0;
+  tfs.transform.translation.z = 1.0;
+  tfs.transform.rotation.x = 0.1;
+  tfs.transform.rotation.y = 0.1;
+  tfs.transform.rotation.z = 0.1;
+  tfs.transform.rotation.w = 0.1;
+
+  // Broadcast the transform
+  tf_broadcaster.sendTransform(tfs);
 }
 
 /**

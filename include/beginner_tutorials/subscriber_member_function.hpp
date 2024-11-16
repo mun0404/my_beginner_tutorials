@@ -42,7 +42,5 @@ class BasicSubscriber : public rclcpp::Node {
      * @param msg The received message of type std_msgs::msg::String.
      */
     void topic_callback(const std_msgs::msg::String & msg) const;
-
-   // Subscription object for the "topic" topic
     rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 };
