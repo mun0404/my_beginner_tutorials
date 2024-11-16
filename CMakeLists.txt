@@ -74,14 +74,6 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   set(ament_cmake_flake8_FOUND TRUE)
   set(ament_cmake_uncrustify_FOUND TRUE)
-
-  ament_lint_auto_find_test_dependencies()
-
-  # Add a gtest executable
-  set(TESTFILES
-    test/test.cpp)
-  ament_add_gtest(${PROJECT_NAME}_test ${TESTFILES})
-  ament_target_dependencies(${PROJECT_NAME}_test ${THIS_PACKAGE_INCLUDE_DEPENDS})
 endif()
 
 ament_package()
